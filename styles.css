@@ -338,16 +338,42 @@ section {
 }
 
 .about-image {
-    background: linear-gradient(135deg, #2C6E49, #E2B659);
-    height: 450px;
-    border-radius: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    font-size: 1.8rem;
+    flex: 1;
+    min-width: 300px;
     text-align: center;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+.about-image img {
+    width: 700px;
+    height: 500px;
+    display: block;
+    margin: 0 auto;
+    border-radius: 8px;
+    object-fit: cover;
+}
+
+.about-image p {
+    margin-top: 1rem;
+    font-style: italic;
+    color: #666;
+}
+
+@media (max-width: 768px) {
+    .about-content {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .about-image img {
+        width: 300px;
+        height: 225px;
+    }
+}
+
+@media (max-width: 480px) {
+    .about-image img {
+        width: 250px;
+        height: 187.5px;
+    }
 }
 
 /* Services Section with Parallax */
