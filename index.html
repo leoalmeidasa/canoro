@@ -4,802 +4,168 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Canóro - Grupo Vocal</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Arial', sans-serif;
-            line-height: 1.6;
-            color: #333;
-            background-color: #F2F2F2;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        /* Header */
-        header {
-            background: linear-gradient(135deg, #1A374D 0%, #2C6E49 100%);
-            color: white;
-            padding: 1rem 0;
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
-
-        .header-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo-container {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        .logo-image {
-            width: 50px;
-            height: 50px;
-            background: rgba(255,255,255,0.1);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            color: #E2B659;
-            border: 2px solid rgba(226, 182, 89, 0.3);
-        }
-
-        .logo-text {
-            font-size: 2rem;
-            font-weight: bold;
-            color: white;
-            text-decoration: none;
-        }
-
-        .mobile-menu-toggle {
-            display: none;
-            background: none;
-            border: none;
-            color: white;
-            font-size: 1.5rem;
-            cursor: pointer;
-            padding: 0.5rem;
-        }
-
-        nav ul {
-            list-style: none;
-            display: flex;
-            gap: 2rem;
-        }
-
-        nav a {
-            color: white;
-            text-decoration: none;
-            transition: color 0.3s;
-            font-weight: 500;
-        }
-
-        nav a:hover {
-            color: #E2B659;
-        }
-
-        /* Hero Section */
-        .hero {
-            background: linear-gradient(135deg, #1A374D 0%, #2C6E49 50%, #E2B659 100%);
-            color: white;
-            padding: 150px 0 100px;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><path d="M0 0h1000v1000H0z" fill="none"/><path d="M100 200c100-50 200 50 300 0s200-50 300 0 200 50 300 0 200-50 300 0v800H100z" fill="rgba(255,255,255,0.05)"/></svg>') no-repeat center center/cover;
-        }
-
-        .hero-carousel {
-            position: relative;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .carousel-container {
-            position: relative;
-            overflow: hidden;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-            z-index: 2;
-        }
-
-        .carousel-slide {
-            display: none;
-            padding: 3rem 2rem;
-            text-align: center;
-            background: rgba(255,255,255,0.1);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255,255,255,0.2);
-            min-height: 300px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-
-        .carousel-slide.active {
-            display: flex;
-        }
-
-        .carousel-slide h1 {
-            font-size: 3.5rem;
-            margin-bottom: 1rem;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-        }
-
-        .carousel-slide p {
-            font-size: 1.3rem;
-            margin-bottom: 2rem;
-            opacity: 0.9;
-            line-height: 1.6;
-        }
-
-        .carousel-slide .slide-subtitle {
-            font-size: 1.1rem;
-            opacity: 0.8;
-            margin-bottom: 1rem;
-            color: #E2B659;
-            font-weight: 600;
-        }
-
-        .carousel-navigation {
-            position: absolute;
-            bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            gap: 10px;
-            z-index: 3;
-        }
-
-        .carousel-dot {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            background: rgba(255,255,255,0.4);
-            cursor: pointer;
-            transition: all 0.3s ease;
-            border: 2px solid transparent;
-        }
-
-        .carousel-dot.active {
-            background: #E2B659;
-            border-color: rgba(255,255,255,0.5);
-            transform: scale(1.2);
-        }
-
-        .carousel-arrow {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background: rgba(255,255,255,0.2);
-            color: white;
-            border: none;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            font-size: 1.2rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            z-index: 3;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .carousel-arrow:hover {
-            background: rgba(226, 182, 89, 0.8);
-            transform: translateY(-50%) scale(1.1);
-        }
-
-        .carousel-arrow.prev {
-            left: 20px;
-        }
-
-        .carousel-arrow.next {
-            right: 20px;
-        }
-
-        .hero-content {
-            position: relative;
-            z-index: 2;
-        }
-
-        .cta-button {
-            background: #E2B659;
-            color: white;
-            padding: 15px 30px;
-            border: none;
-            border-radius: 50px;
-            font-size: 1.1rem;
-            font-weight: bold;
-            cursor: pointer;
-            transition: transform 0.3s, box-shadow 0.3s;
-            text-decoration: none;
-            display: inline-block;
-        }
-
-        .cta-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(226, 182, 89, 0.4);
-        }
-
-        /* Sections */
-        section {
-            padding: 80px 0;
-        }
-
-        .section-title {
-            text-align: center;
-            font-size: 2.5rem;
-            margin-bottom: 3rem;
-            color: #1A374D;
-            position: relative;
-        }
-
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 4px;
-            background: linear-gradient(90deg, #2C6E49, #E2B659);
-            border-radius: 2px;
-        }
-
-        /* About Section */
-        .about {
-            background: white;
-        }
-
-        .about-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
-        }
-
-        .about-text {
-            font-size: 1.1rem;
-            line-height: 1.8;
-            color: #555;
-        }
-
-        .about-image {
-            background: linear-gradient(135deg, #2C6E49, #E2B659);
-            height: 400px;
-            border-radius: 15px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 1.5rem;
-            text-align: center;
-        }
-
-        /* Services Section */
-        .services {
-            background: #F2F2F2;
-        }
-
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-
-        .service-card {
-            background: white;
-            padding: 2rem;
-            border-radius: 15px;
-            text-align: center;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-
-        .service-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
-        }
-
-        .service-icon {
-            width: 80px;
-            height: 80px;
-            background: linear-gradient(135deg, #2C6E49, #E2B659);
-            border-radius: 50%;
-            margin: 0 auto 1rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2rem;
-            color: white;
-        }
-
-        .service-card h3 {
-            color: #1A374D;
-            margin-bottom: 1rem;
-        }
-
-        /* Contact Section */
-        .contact {
-            background: linear-gradient(135deg, #1A374D 0%, #2C6E49 100%);
-            color: white;
-        }
-
-        .contact-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-        }
-
-        .contact-info h3 {
-            margin-bottom: 1rem;
-            color: #E2B659;
-        }
-
-        .contact-form {
-            background: rgba(255,255,255,0.1);
-            padding: 2rem;
-            border-radius: 15px;
-            backdrop-filter: blur(10px);
-        }
-
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-            color: #E2B659;
-        }
-
-        .form-group input,
-        .form-group textarea {
-            width: 100%;
-            padding: 12px;
-            border: none;
-            border-radius: 8px;
-            background: rgba(255,255,255,0.9);
-            color: #333;
-        }
-
-        .form-group textarea {
-            height: 120px;
-            resize: vertical;
-        }
-
-        /* Footer */
-        footer {
-            background: #1A374D;
-            color: white;
-            text-align: center;
-            padding: 2rem 0;
-        }
-
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .hero h1,
-            .carousel-slide h1 {
-                font-size: 2.5rem;
-            }
-
-            .carousel-slide p {
-                font-size: 1.1rem;
-            }
-
-            .carousel-slide {
-                padding: 2rem 1.5rem;
-                min-height: 250px;
-            }
-
-            .carousel-arrow {
-                width: 40px;
-                height: 40px;
-                font-size: 1rem;
-            }
-
-            .carousel-arrow.prev {
-                left: 10px;
-            }
-
-            .carousel-arrow.next {
-                right: 10px;
-            }
-
-            .about-content,
-            .contact-content {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-            }
-
-            .mobile-menu-toggle {
-                display: block;
-            }
-
-            nav {
-                position: absolute;
-                top: 100%;
-                left: 0;
-                right: 0;
-                background: linear-gradient(135deg, #1A374D 0%, #2C6E49 100%);
-                border-top: 1px solid rgba(255,255,255,0.1);
-                transform: translateY(-100%);
-                opacity: 0;
-                visibility: hidden;
-                transition: all 0.3s ease;
-            }
-
-            nav.active {
-                transform: translateY(0);
-                opacity: 1;
-                visibility: visible;
-            }
-
-            nav ul {
-                flex-direction: column;
-                gap: 0;
-                padding: 1rem 0;
-            }
-
-            nav li {
-                border-bottom: 1px solid rgba(255,255,255,0.1);
-            }
-
-            nav li:last-child {
-                border-bottom: none;
-            }
-
-            nav a {
-                display: block;
-                padding: 1rem 2rem;
-                text-align: center;
-                transition: all 0.3s;
-            }
-
-            nav a:hover {
-                background: rgba(226, 182, 89, 0.1);
-                color: #E2B659;
-            }
-
-            .logo-text {
-                font-size: 1.8rem;
-            }
-
-            .logo-image {
-                width: 45px;
-                height: 45px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .carousel-slide h1 {
-                font-size: 2rem;
-            }
-
-            .carousel-slide p {
-                font-size: 1rem;
-            }
-
-            .carousel-slide {
-                padding: 1.5rem 1rem;
-                min-height: 200px;
-            }
-
-            .logo-text {
-                font-size: 1.5rem;
-            }
-
-            .logo-image {
-                width: 40px;
-                height: 40px;
-            }
-
-            .container {
-                padding: 0 15px;
-            }
-        }
-
-        /* Animation */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .fade-in-up {
-            animation: fadeInUp 0.8s ease-out;
-        }
-    </style>
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
 </head>
 <body>
-    <header>
-        <div class="container">
-            <div class="header-content">
-                <div class="logo-container">
-                    <div class="logo-image">
-                        <!-- Substitua por: <img src="caminho/para/seu/logo.png" alt="Canóro Logo" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;"> -->
-                        🎵
-                    </div>
-                    <a href="#" class="logo-text">Canóro</a>
+<header>
+    <div class="container">
+        <div class="header-content">
+            <div class="logo-container">
+                <div class="logo-image">
+                    <a href="#inicio">
+                        <img src="logo.jpg" alt="Canóro Logo" onerror="this.style.display='none'; this.parentElement.innerHTML='♪';">
+                    </a>
                 </div>
-                <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">☰</button>
-                <nav id="mobileNav">
-                    <ul>
-                        <li><a href="#inicio">Início</a></li>
-                        <li><a href="#sobre">Sobre</a></li>
-                        <li><a href="#servicos">Serviços</a></li>
-                        <li><a href="#contato">Contato</a></li>
-                    </ul>
-                </nav>
+            </div>
+            <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">☰</button>
+            <nav id="mobileNav">
+                <ul>
+                    <li><a href="#inicio">Início</a></li>
+                    <li><a href="#sobre">Sobre</a></li>
+                    <li><a href="#servicos">Serviços</a></li>
+                    <li><a href="#contato">Contato</a></li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</header>
+
+<main>
+    <section id="inicio" class="hero">
+        <div class="container">
+            <div class="hero-content fade-in-up">
+                <div class="hero-carousel">
+                    <div class="carousel-container">
+                        <div class="carousel-slide active">
+                            <div class="slide-subtitle">Bem-vindos ao</div>
+                            <h1>Grupo Vocal Canóro</h1>
+                            <p>Levando a música e a harmonia para onde você estiver</p>
+                            <a href="#contato" class="cta-button">Entre em Contato</a>
+                        </div>
+                        <div class="carousel-slide">
+                            <div class="slide-subtitle">Experiência Musical</div>
+                            <h1>Momentos Únicos</h1>
+                            <p>Criamos atmosferas especiais através da arte vocal, transformando cada evento em uma experiência inesquecível</p>
+                            <a href="#sobre" class="cta-button">Conheça Nossa História</a>
+                        </div>
+                        <div class="carousel-slide">
+                            <div class="slide-subtitle">Repertório Diversificado</div>
+                            <h1>Música para Todos</h1>
+                            <p>Desde clássicos atemporais até arranjos contemporâneos, nossa música se adapta perfeitamente ao seu evento</p>
+                            <a href="#servicos" class="cta-button">Veja Nossos Serviços</a>
+                        </div>
+                        <div class="carousel-slide">
+                            <div class="slide-subtitle">Profissionalismo</div>
+                            <h1>Qualidade Garantida</h1>
+                            <p>Comprometidos com a excelência musical e a satisfação do nosso público em cada apresentação</p>
+                            <a href="#contato" class="cta-button">Solicite Orçamento</a>
+                        </div>
+                    </div>
+                    <button class="carousel-arrow prev" onclick="changeSlide(-1)">❮</button>
+                    <button class="carousel-arrow next" onclick="changeSlide(1)">❯</button>
+                    <div class="carousel-navigation">
+                        <span class="carousel-dot active" onclick="currentSlide(1)"></span>
+                        <span class="carousel-dot" onclick="currentSlide(2)"></span>
+                        <span class="carousel-dot" onclick="currentSlide(3)"></span>
+                        <span class="carousel-dot" onclick="currentSlide(4)"></span>
+                    </div>
+                </div>
             </div>
         </div>
-    </header>
+    </section>
 
-    <main>
-        <section id="inicio" class="hero">
-            <div class="container">
-                <div class="hero-content fade-in-up">
-                    <div class="hero-carousel">
-                        <div class="carousel-container">
-                            <div class="carousel-slide active">
-                                <div class="slide-subtitle">Bem-vindos ao</div>
-                                <h1>Grupo Vocal Canóro</h1>
-                                <p>Levando a música e a harmonia para onde você estiver</p>
-                                <a href="#contato" class="cta-button">Entre em Contato</a>
-                            </div>
-                            <div class="carousel-slide">
-                                <div class="slide-subtitle">Experiência Musical</div>
-                                <h1>Momentos Únicos</h1>
-                                <p>Criamos atmosferas especiais através da arte vocal, transformando cada evento em uma experiência inesquecível</p>
-                                <a href="#sobre" class="cta-button">Conheça Nossa História</a>
-                            </div>
-                            <div class="carousel-slide">
-                                <div class="slide-subtitle">Repertório Diversificado</div>
-                                <h1>Música para Todos</h1>
-                                <p>Desde clássicos atemporais até arranjos contemporâneos, nossa música se adapta perfeitamente ao seu evento</p>
-                                <a href="#servicos" class="cta-button">Veja Nossos Serviços</a>
-                            </div>
-                            <div class="carousel-slide">
-                                <div class="slide-subtitle">Profissionalismo</div>
-                                <h1>Qualidade Garantida</h1>
-                                <p>Comprometidos com a excelência musical e a satisfação do nosso público em cada apresentação</p>
-                                <a href="#contato" class="cta-button">Solicite Orçamento</a>
-                            </div>
-                        </div>
-                        <button class="carousel-arrow prev" onclick="changeSlide(-1)">❮</button>
-                        <button class="carousel-arrow next" onclick="changeSlide(1)">❯</button>
-                        <div class="carousel-navigation">
-                            <span class="carousel-dot active" onclick="currentSlide(1)"></span>
-                            <span class="carousel-dot" onclick="currentSlide(2)"></span>
-                            <span class="carousel-dot" onclick="currentSlide(3)"></span>
-                            <span class="carousel-dot" onclick="currentSlide(4)"></span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="sobre" class="about">
-            <div class="container">
-                <h2 class="section-title">Sobre Nós</h2>
-                <div class="about-content">
-                    <div class="about-text">
-                        <p>O Grupo Vocal Canóro é formado por músicos apaixonados que se dedicam a criar experiências sonoras únicas. Nossa missão é levar a beleza da música vocal para diferentes espaços e ocasiões, criando momentos especiais através da harmonia e da melodia.</p>
-                        
-                        <p>Com um repertório diversificado que vai desde clássicos atemporais até arranjos contemporâneos, adaptamos nossa performance para cada evento, garantindo que a música seja sempre o destaque da ocasião.</p>
-                        
-                        <p>Nosso compromisso é com a excelência musical e a satisfação de nosso público, trabalhando sempre com profissionalismo e dedicação para criar memórias inesquecíveis.</p>
-                    </div>
-                    <div class="about-image">
-                        <div>
-                            <h3>🎵 Música & Harmonia</h3>
-                            <p>Criando momentos especiais através da arte vocal</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="servicos" class="services">
-            <div class="container">
-                <h2 class="section-title">Nossos Serviços</h2>
-                <div class="services-grid">
-                    <div class="service-card fade-in-up">
-                        <div class="service-icon">🎤</div>
-                        <h3>Apresentações</h3>
-                        <p>Shows e apresentações musicais para eventos corporativos, culturais e sociais com repertório personalizado.</p>
-                    </div>
-                    <div class="service-card fade-in-up">
-                        <div class="service-icon">💒</div>
-                        <h3>Cerimônias</h3>
-                        <p>Música para casamentos, batizados e outras cerimônias especiais, criando a atmosfera perfeita para seu momento.</p>
-                    </div>
-                    <div class="service-card fade-in-up">
-                        <div class="service-icon">🎼</div>
-                        <h3>Workshops</h3>
-                        <p>Oficinas de canto coral e técnica vocal para grupos, escolas e instituições interessadas em música.</p>
-                    </div>
-                    <div class="service-card fade-in-up">
-                        <div class="service-icon">🎵</div>
-                        <h3>Gravações</h3>
-                        <p>Serviços de gravação de arranjos vocais para projetos musicais, jingles e material promocional.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="contato" class="contact">
-            <div class="container">
-                <h2 class="section-title" style="color: white;">Entre em Contato</h2>
-                <div class="contact-content">
-                    <div class="contact-info">
-                        <h3>Vamos Conversar</h3>
-                        <p>Estamos prontos para tornar seu evento ainda mais especial com nossa música. Entre em contato conosco e vamos criar juntos uma experiência musical única.</p>
-                        
-                        <div style="margin-top: 2rem;">
-                            <p><strong>📧 Email:</strong> contato@canoro.com.br</p>
-                            <p><strong>📱 WhatsApp:</strong> (11) 99999-9999</p>
-                            <p><strong>📍 Localização:</strong> São Paulo, SP</p>
-                        </div>
-                    </div>
-                    
-                    <div class="contact-form">
-                        <h3 style="color: #E2B659; margin-bottom: 1.5rem;">Solicite um Orçamento</h3>
-                        <form>
-                            <div class="form-group">
-                                <label for="nome">Nome</label>
-                                <input type="text" id="nome" name="nome" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="email">Email</label>
-                                <input type="email" id="email" name="email" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="evento">Tipo de Evento</label>
-                                <input type="text" id="evento" name="evento" placeholder="Ex: Casamento, Evento Corporativo...">
-                            </div>
-                            <div class="form-group">
-                                <label for="mensagem">Mensagem</label>
-                                <textarea id="mensagem" name="mensagem" placeholder="Conte-nos mais sobre seu evento..."></textarea>
-                            </div>
-                            <button type="submit" class="cta-button" style="width: 100%;">Enviar Mensagem</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <footer>
+    <section id="sobre" class="about">
         <div class="container">
-            <p>&copy; 2024 Grupo Vocal Canóro. Todos os direitos reservados.</p>
+            <h2 class="section-title">Sobre Nós</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>O Grupo Vocal Canóro é formado por músicos apaixonados que se dedicam a criar experiências sonoras únicas. Nossa missão é levar a beleza da música vocal para diferentes espaços e ocasiões, criando momentos especiais através da harmonia e da melodia.</p>
+                    <p>Com um repertório diversificado que vai desde clássicos atemporais até arranjos contemporâneos, adaptamos nossa performance para cada evento, garantindo que a música seja sempre o destaque da ocasião.</p>
+                    <p>Nosso compromisso é com a excelência musical e a satisfação de nosso público, trabalhando sempre com profissionalismo e dedicação para criar memórias inesquecíveis.</p>
+                </div>
+                <div class="about-image">
+                    <div>
+                        <h3>🎵 Música & Harmonia</h3>
+                        <p>Criando momentos especiais através da arte vocal</p>
+                    </div>
+                </div>
+            </div>
         </div>
-    </footer>
+    </section>
 
-    <script>
-        // Carousel functionality
-        let currentSlideIndex = 0;
-        const slides = document.querySelectorAll('.carousel-slide');
-        const dots = document.querySelectorAll('.carousel-dot');
-        const totalSlides = slides.length;
+    <section id="servicos" class="services">
+        <div class="container">
+            <h2 class="section-title">Nossos Serviços</h2>
+            <div class="services-grid">
+                <div class="service-card fade-in-up">
+                    <div class="service-icon">🎤</div>
+                    <h3>Apresentações</h3>
+                    <p>Shows e apresentações musicais para eventos corporativos, culturais e sociais com repertório personalizado.</p>
+                </div>
+                <div class="service-card fade-in-up">
+                    <div class="service-icon">💒</div>
+                    <h3>Cerimônias</h3>
+                    <p>Música para casamentos, batizados e outras cerimônias especiais, criando a atmosfera perfeita para seu momento.</p>
+                </div>
+                <div class="service-card fade-in-up">
+                    <div class="service-icon">🎼</div>
+                    <h3>Workshops</h3>
+                    <p>Oficinas de canto coral e técnica vocal para grupos, escolas e instituições interessadas em música.</p>
+                </div>
+                <div class="service-card fade-in-up">
+                    <div class="service-icon">🎵</div>
+                    <h3>Gravações</h3>
+                    <p>Serviços de gravação de arranjos vocais para projetos musicais, jingles e material promocional.</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-        function showSlide(index) {
-            // Hide all slides
-            slides.forEach(slide => slide.classList.remove('active'));
-            dots.forEach(dot => dot.classList.remove('active'));
-            
-            // Show current slide
-            slides[index].classList.add('active');
-            dots[index].classList.add('active');
-        }
+    <section id="contato" class="contact">
+        <div class="container">
+            <h2 class="section-title" style="color: white;">Entre em Contato</h2>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <h3>Vamos Conversar</h3>
+                    <p>Estamos prontos para tornar seu evento ainda mais especial com nossa música. Entre em contato conosco e vamos criar juntos uma experiência musical única.</p>
+                    <div style="margin-top: 2.5rem;">
+                        <p><strong>📧 Email:</strong> contato@canoro.com.br</p>
+                        <p><strong>📱 WhatsApp:</strong> (11) 99999-9999</p>
+                        <p><strong>📍 Localização:</strong> São Paulo, SP</p>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <h3 style="color: #E2B659; margin-bottom: 1.8rem;">Solicite um Orçamento</h3>
+                    <div>
+                        <div class="form-group">
+                            <label for="nome">Nome</label>
+                            <input type="text" id="nome" name="nome" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="evento">Tipo de Evento</label>
+                            <input type="text" id="evento" name="evento" placeholder="Ex: Casamento, Evento Corporativo...">
+                        </div>
+                        <div class="form-group">
+                            <label for="mensagem">Mensagem</label>
+                            <textarea id="mensagem" name="mensagem" placeholder="Conte-nos mais sobre seu evento..."></textarea>
+                        </div>
+                        <button type="button" class="cta-button" style="width: 100%;" onclick="submitForm()">Enviar Mensagem</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
 
-        function changeSlide(direction) {
-            currentSlideIndex += direction;
-            
-            if (currentSlideIndex >= totalSlides) {
-                currentSlideIndex = 0;
-            } else if (currentSlideIndex < 0) {
-                currentSlideIndex = totalSlides - 1;
-            }
-            
-            showSlide(currentSlideIndex);
-        }
-
-        function currentSlide(index) {
-            currentSlideIndex = index - 1;
-            showSlide(currentSlideIndex);
-        }
-
-        // Auto-advance carousel
-        setInterval(() => {
-            changeSlide(1);
-        }, 5000); // Change slide every 5 seconds
-
-        // Mobile menu toggle
-        function toggleMobileMenu() {
-            const nav = document.getElementById('mobileNav');
-            nav.classList.toggle('active');
-        }
-
-        // Close mobile menu when clicking on a link
-        document.querySelectorAll('nav a').forEach(link => {
-            link.addEventListener('click', () => {
-                const nav = document.getElementById('mobileNav');
-                nav.classList.remove('active');
-            });
-        });
-
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
-
-        // Form submission
-        document.querySelector('form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            alert('Mensagem enviada com sucesso! Entraremos em contato em breve.');
-            this.reset();
-        });
-
-        // Animation on scroll
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('fade-in-up');
-                }
-            });
-        }, observerOptions);
-
-        document.querySelectorAll('.service-card').forEach(card => {
-            observer.observe(card);
-        });
-    </script>
+<footer>
+    <div class="container">
+        <p>© 2024 Grupo Vocal Canóro. Todos os direitos reservados.</p>
+    </div>
+</footer>
 </body>
 </html>
