@@ -44,11 +44,7 @@ Para rodar o Canoro localmente, siga os passos abaixo:
 
 ## Como Usar
 
-Após abrir o `index.html` no seu navegador, você poderá:
-
-*   **Navegar pela interface:** Explore as seções de músicas e playlists.
-*   **Adicionar músicas:** (Funcionalidade a ser implementada/detalhada).
-*   **Criar playlists:** (Funcionalidade a ser implementada/detalhada).
+Após abrir o `index.html` no seu navegador.
 
 ## Contribuição
 
