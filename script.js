@@ -83,12 +83,6 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
-// Form submission
-function submitForm() {
-    alert('Mensagem enviada com sucesso! Entraremos em contato em breve.');
-    document.querySelector('.contact-form div').reset();
-}
-
 // Animation on scroll
 const observerOptions = {
     threshold: 0.15,
