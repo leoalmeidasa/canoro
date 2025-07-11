@@ -65,7 +65,7 @@ Este projeto está licenciado sob a Licença MIT. Veja o arquivo [LICENSE](LICEN
 
 Se tiver alguma dúvida ou sugestão, sinta-se à vontade para entrar em contato com o mantenedor do projeto:
 
-*   **Leo Almeida:** [Seu perfil do GitHub](https://github.com/leoalmeidasa)
+*   **Leo Almeida:** [GitHub](https://github.com/leoalmeidasa)
 
 ---
 
