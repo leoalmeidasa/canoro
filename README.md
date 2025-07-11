@@ -46,6 +46,9 @@ Para rodar o Canoro localmente, siga os passos abaixo:
 
 Após abrir o `index.html` no seu navegador.
 
+## Deploy no Github Pages
+https://leoalmeidasa.github.io/canoro/
+
 ## Contribuição
 
 Contribuições são muito bem-vindas! Se você deseja contribuir com o projeto Canoro, siga estas diretrizes:
