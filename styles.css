@@ -369,8 +369,8 @@ section {
     text-align: center;
 }
 .about-image img {
-    width: 700px;
-    height: 500px;
+    width: 100%;
+    height: 100%;
     display: block;
     margin: 0 auto;
     border-radius: 8px;
@@ -455,6 +455,72 @@ section {
 }
 
 .service-card h3 {
+    color: #1A374D;
+    margin-bottom: 1.2rem;
+    font-size: 1.5rem;
+}
+
+/* integrantes Section with Parallax */
+.integrantes {
+    background: white;
+    position: relative;
+}
+
+.integrantes::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><path d="M0 0h1000v1000H0z" fill="none"/><path d="M0 200c100-50 200 50 300 0s200-50 300 0 200 50 300 0 200-50 300 0v800H0z" fill="rgba(28,55,77,0.05)"/></svg>') no-repeat center center/cover;
+    background-attachment: fixed;
+    opacity: 0.15;
+    z-index: -1;
+}
+
+.integrantes-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 1rem 2.5rem;
+}
+
+.integrante-card {
+    background: white;
+    padding: 2.5rem;
+    border-radius: 20px;
+    text-align: center;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.integrante-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 30px rgba(0,0,0,0.18);
+}
+
+.integrante-icon {
+    width: 50%;
+    height: 50%;
+    background: linear-gradient(135deg, #2C6E49, #E2B659);
+    border-radius: 50%;
+    margin: 0 auto 5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.5rem;
+    color: white;
+    overflow: hidden; /* Ensures any overflow is hidden */
+}
+
+.integrante-icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Crops the image to fill the container */
+    transition: transform 0.3s ease;
+}
+
+.integrante-card h3 {
     color: #1A374D;
     margin-bottom: 1.2rem;
     font-size: 1.5rem;
