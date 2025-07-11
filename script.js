@@ -47,9 +47,12 @@ function resetAutoSlide() {
 }
 
 // Initialize carousel
-document.addEventListener('DOMContentLoaded', function() {
-    showSlide(0);
-    startAutoSlide();
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowLeft') {
+        changeSlide(-1);
+    } else if (e.key === 'ArrowRight') {
+        changeSlide(1);
+    }
 });
 
 // Mobile menu toggle

@@ -5,7 +5,7 @@
 }
 
 body {
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Arial', sans-serif;
     line-height: 1.8;
     color: #333;
     background-color: #F2F2F2;
@@ -20,26 +20,37 @@ body {
 
 /* Header */
 header {
-    background: linear-gradient(135deg, #1A374D 0%, #2C6E49 100%);
-    color: white;
-    padding: 1.5rem 0;
-    position: fixed;
-    width: 100%;
+    position: absolute;
     top: 0;
+    left: 0;
+    right: 0;
     z-index: 1000;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    background: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(10px);
+    padding: 1rem 0;
 }
 
 .header-content {
+    max-width: 1200px;
+    margin: 0 auto;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding: 0 2rem;
 }
 
 .logo-container {
     display: flex;
     align-items: center;
-    gap: 1rem;
+    color: white;
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.logo::before {
+    content: "♪";
+    margin-right: 0.5rem;
+    font-size: 1.5rem;
 }
 
 .logo-image {
@@ -98,7 +109,7 @@ nav a {
     text-decoration: none;
     font-weight: 600;
     font-size: 1.1rem;
-    transition: color 0.3s, transform 0.3s;
+    transition: background-color 0.3s;
 }
 
 nav a:hover {
@@ -110,13 +121,7 @@ nav a:hover {
 .hero {
     position: relative;
     height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    text-align: center;
     overflow: hidden;
-    padding-top: 80px;
 }
 
 .hero::before {
@@ -148,49 +153,51 @@ nav a:hover {
 
 .hero-carousel {
     position: relative;
-    max-width: 900px;
-    margin: 0 auto;
+    width: 100%;
+    height: 100%;
 }
 
 .carousel-container {
     position: relative;
-    overflow: hidden;
-    border-radius: 20px;
-    box-shadow: 0 12px 40px rgba(0,0,0,0.4);
-    z-index: 2;
+    width: 100%;
+    height: 100%;
 }
 
 .carousel-slide {
-    display: none;
-    padding: 4rem 2.5rem;
-    text-align: center;
-    background: rgba(255,255,255,0.15);
-    backdrop-filter: blur(12px);
-    border: 1px solid rgba(255,255,255,0.25);
-    min-height: 350px;
-    flex-direction: column;
-    justify-content: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
     opacity: 0;
-    transition: opacity 0.5s ease-in-out;
+    transition: opacity 1s ease-in-out;
+    overflow: hidden;
 }
 
 .carousel-slide.active {
-    display: flex;
     opacity: 1;
 }
 
-.carousel-slide h1 {
-    font-size: 4rem;
-    margin-bottom: 1.5rem;
-    text-shadow: 3px 3px 6px rgba(0,0,0,0.4);
-    font-weight: 700;
+.carousel-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    display: block;
+    min-height: 90vh;
+    min-width: 100vw;
 }
 
-.carousel-slide p {
-    font-size: 1.4rem;
-    margin-bottom: 2.5rem;
-    opacity: 0.9;
-    line-height: 1.7;
+/* Overlay para escurecer a imagem */
+.carousel-slide::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 1;
 }
 
 .carousel-slide .slide-subtitle {
@@ -231,16 +238,17 @@ nav a:hover {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    background: rgba(255,255,255,0.25);
+    background: rgba(0, 0, 0, 0.5);
     color: white;
     border: none;
+    padding: 1rem;
+    cursor: pointer;
+    font-size: 1.5rem;
+    z-index: 3;
+    transition: all 0.3s;
+    border-radius: 50%;
     width: 60px;
     height: 60px;
-    border-radius: 50%;
-    font-size: 1.5rem;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    z-index: 3;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -252,11 +260,29 @@ nav a:hover {
 }
 
 .carousel-arrow.prev {
-    left: 30px;
+    left: 2rem;
 }
 
 .carousel-arrow.next {
-    right: 30px;
+    right: 2rem;
+}
+
+.carousel-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.5);
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.carousel-dot.active {
+    background: white;
+    transform: scale(1.2);
+}
+
+.carousel-dot:hover {
+    background: rgba(255, 255, 255, 0.8);
 }
 
 .cta-button {
@@ -280,7 +306,7 @@ nav a:hover {
 
 /* Sections */
 section {
-    padding: 100px 0;
+    padding: 0;
     position: relative;
 }
 
@@ -524,8 +550,14 @@ footer {
     }
 
     .carousel-slide {
-        padding: 2.5rem 2rem;
-        min-height: 280px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0;
+        transition: opacity 1s ease-in-out;
+        overflow: hidden;
     }
 
     .carousel-arrow {
@@ -639,16 +671,16 @@ footer {
 @keyframes fadeInUp {
     from {
         opacity: 0;
-        transform: translateY(40px);
+        transform: translate(-50%, -40%);
     }
     to {
         opacity: 1;
-        transform: translateY(0);
+        transform: translate(-50%, -50%);
     }
 }
 
 .fade-in-up {
-    animation: fadeInUp 0.8s ease-out;
+    animation: fadeInUp 1s ease-out;
 }
 
 /* Parallax Fallback for Mobile */
@@ -659,5 +691,22 @@ footer {
     .services::before,
     .contact::before {
         background-attachment: scroll;
+    }
+    .nav {
+        display: none;
+    }
+
+    .carousel-arrow {
+        width: 50px;
+        height: 50px;
+        font-size: 1.2rem;
+    }
+
+    .carousel-arrow.prev {
+        left: 1rem;
+    }
+
+    .carousel-arrow.next {
+        right: 1rem;
     }
 }
