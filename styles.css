@@ -649,7 +649,7 @@ footer {
     }
 
     .carousel-slide {
-        padding: 2rem 1.5rem;
+        padding: 2rem 0;
         min-height: 220px;
     }
 
@@ -679,7 +679,7 @@ footer {
     }
 }
 
-.fade-in-up {
+.carousel .fade-in-up {
     animation: fadeInUp 1s ease-out;
 }
 
