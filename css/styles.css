@@ -508,7 +508,7 @@ section {
 }
 
 .integrante-card {
-    background: white;
+    background: linear-gradient(135deg, #2C6E49, #E2B659);
     padding: 2.5rem;
     border-radius: 20px;
     text-align: center;
@@ -543,7 +543,7 @@ section {
 }
 
 .integrante-card h3 {
-    color: #1A374D;
+    color: #ebeef0;
     margin-bottom: 1.2rem;
     font-size: 1.5rem;
 }
