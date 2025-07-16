@@ -4,11 +4,15 @@
     box-sizing: border-box;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     font-family: 'Arial', sans-serif;
     line-height: 1.8;
     color: #333;
-    background-color: #F2F2F2;
+    background-color: #1A374D;
     overflow-x: hidden;
 }
 
@@ -20,7 +24,7 @@ body {
 
 /* Header */
 header {
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     right: 0;
@@ -28,6 +32,7 @@ header {
     background: rgba(0, 0, 0, 0.3);
     backdrop-filter: blur(10px);
     padding: 1rem 0;
+    transition: background 0.3s ease;
 }
 
 .header-content {
@@ -122,6 +127,8 @@ nav a:hover {
     position: relative;
     height: 100vh;
     overflow: hidden;
+    padding: 0;
+    scroll-margin-top: 0; /* Hero não precisa de offset */
 }
 
 .hero::before {
@@ -181,11 +188,9 @@ nav a:hover {
 .carousel-slide img {
     width: 100%;
     height: 100%;
-    object-position: center top;
+    object-fit: contain;
+    object-position: center;
     display: block;
-    min-height: 90vh;
-    min-width: 100vw;
-    margin-top: 80px; /* Ajuste o valor conforme necessário */
 }
 
 /* Overlay para escurecer a imagem */
@@ -306,8 +311,9 @@ nav a:hover {
 
 /* Sections */
 section {
-    padding: 0;
+    padding: 5rem 0;
     position: relative;
+    scroll-margin-top: 90px; /* Offset para navbar fixa */
 }
 
 .section-title-contato {
@@ -732,15 +738,12 @@ footer {
         font-size: 1.2rem;
     }
 
-    .carousel-slide {
-        position: absolute;
-        top: 0;
-        left: 0;
+    .carousel-slide img {
         width: 100%;
         height: 100%;
-        opacity: 0;
-        transition: opacity 1s ease-in-out;
-        overflow: hidden;
+        object-fit: contain;
+        object-position: center;
+        display: block;
     }
 
     .carousel-arrow {
@@ -844,15 +847,26 @@ footer {
         font-size: 1.1rem;
     }
 
-    .carousel-slide {
-        position: absolute;
-        top: 0;
-        left: 0;
+    .carousel-slide img {
         width: 100%;
         height: 100%;
-        opacity: 0;
-        transition: opacity 1s ease-in-out;
-        overflow: hidden;
+        object-fit: contain;
+        object-position: center;
+        display: block;
+    }
+
+    .carousel-arrow {
+        width: 45px;
+        height: 45px;
+        font-size: 1rem;
+    }
+
+    .carousel-arrow.prev {
+        left: 10px;
+    }
+
+    .carousel-arrow.next {
+        right: 10px;
     }
 
     .logo-image {
@@ -926,21 +940,8 @@ footer {
     .contact::before {
         background-attachment: scroll;
     }
+
     .nav {
         display: none;
-    }
-
-    .carousel-arrow {
-        width: 50px;
-        height: 50px;
-        font-size: 1.2rem;
-    }
-
-    .carousel-arrow.prev {
-        left: 1rem;
-    }
-
-    .carousel-arrow.next {
-        right: 1rem;
     }
 }
