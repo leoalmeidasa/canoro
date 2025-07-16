@@ -428,6 +428,8 @@ section {
 .services {
     background: #F2F2F2;
     position: relative;
+    padding-bottom: 1rem;
+    margin-bottom: 1rem;
 }
 
 .services::before {
@@ -486,6 +488,8 @@ section {
 .integrantes {
     background: white;
     position: relative;
+    padding-bottom: 1rem;
+    margin-bottom: 1rem;
 }
 
 .integrantes::before {
@@ -532,13 +536,13 @@ section {
     justify-content: center;
     font-size: 2.5rem;
     color: white;
-    overflow: hidden; /* Ensures any overflow is hidden */
+    overflow: hidden;
 }
 
 .integrante-icon img {
     width: 100%;
     height: 100%;
-    object-fit: cover; /* Crops the image to fill the container */
+    object-fit: cover;
     transition: transform 0.3s ease;
 }
 
@@ -548,6 +552,16 @@ section {
     font-size: 1.5rem;
 }
 
+/* Responsividade adicional */
+@media (max-width: 768px) {
+    .integrantes-grid {
+        gap: 2rem 1.5rem; /* Reduz o gap em telas menores */
+    }
+
+    .integrante-card {
+        margin-bottom: 1rem;
+    }
+}
 /* Contact Section with Parallax */
 .contact {
     background: linear-gradient(135deg, #1A374D 0%, #2C6E49 100%);
