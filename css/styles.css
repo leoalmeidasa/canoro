@@ -490,7 +490,6 @@ section {
     font-size: 1.5rem;
 }
 
-/* integrantes Section with Parallax */
 .integrantes {
     background: white;
     position: relative;
@@ -513,17 +512,25 @@ section {
 
 .integrantes-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 1rem 2.5rem;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2.5rem;
+    justify-items: center;
 }
 
 .integrante-card {
     background: linear-gradient(135deg, #2C6E49, #E2B659);
-    padding: 2.5rem;
+    padding: 2rem;
     border-radius: 20px;
     text-align: center;
     box-shadow: 0 8px 20px rgba(0,0,0,0.12);
     transition: transform 0.3s, box-shadow 0.3s;
+    width: 100%;
+    max-width: 385px;
+    min-height: 385px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
 }
 
 .integrante-card:hover {
@@ -532,11 +539,11 @@ section {
 }
 
 .integrante-icon {
-    width: 150px;
-    height: 150px;
+    width: 140px;
+    height: 140px;
     background: linear-gradient(135deg, #2C6E49, #E2B659);
     border-radius: 50%;
-    margin: 0 auto 2rem;
+    margin: 0 auto 1.5rem;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -544,6 +551,7 @@ section {
     color: white;
     overflow: hidden;
     border: 3px solid rgba(255, 255, 255, 0.3);
+    flex-shrink: 0;
 }
 
 .integrante-icon img {
@@ -559,25 +567,99 @@ section {
 
 .integrante-card h3 {
     color: #ebeef0;
-    margin-bottom: 1.2rem;
-    font-size: 1.5rem;
+    margin-bottom: 0.8rem;
+    font-size: 1.4rem;
+    font-weight: 600;
+    text-align: center;
+    line-height: 1.3;
 }
 
-/* Responsividade adicional */
-@media (max-width: 768px) {
+.integrante-card p {
+    color: #f0f3f5;
+    font-size: 1.1rem;
+    font-weight: 500;
+    margin: 0;
+    text-align: center;
+    opacity: 0.9;
+}
+
+@media (max-width: 1200px) {
     .integrantes-grid {
-        gap: 2rem 1.5rem; /* Reduz o gap em telas menores */
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 2rem;
     }
 
     .integrante-card {
-        margin-bottom: 1rem;
+        max-width: 385px;
+        min-height: 385px;
+        padding: 1.8rem;
+    }
+
+    .integrante-icon {
+        width: 130px;
+        height: 130px;
+    }
+}
+
+@media (max-width: 768px) {
+    .integrantes-grid {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 1.5rem;
+        padding: 0 1rem;
+    }
+
+    .integrante-card {
+        max-width: 385px;
+        min-height: 385px;
+        padding: 1.5rem;
     }
 
     .integrante-icon {
         width: 120px;
         height: 120px;
+        margin-bottom: 1.2rem;
+    }
+
+    .integrante-card h3 {
+        font-size: 1.3rem;
+        margin-bottom: 0.6rem;
+    }
+
+    .integrante-card p {
+        font-size: 1rem;
     }
 }
+
+@media (max-width: 480px) {
+    .integrantes-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+        max-width: 300px;
+        margin: 0 auto;
+    }
+
+    .integrante-card {
+        max-width: 100%;
+        min-height: 260px;
+        padding: 1.5rem;
+    }
+
+    .integrante-icon {
+        width: 110px;
+        height: 110px;
+        margin-bottom: 1rem;
+    }
+
+    .integrante-card h3 {
+        font-size: 1.2rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .integrante-card p {
+        font-size: 0.95rem;
+    }
+}
+
 /* Contact Section with Parallax */
 .contact {
     background: linear-gradient(135deg, #1A374D 0%, #2C6E49 100%);
@@ -898,11 +980,6 @@ footer {
 
     .section-title {
         font-size: 2.2rem;
-    }
-
-    .integrante-icon {
-        width: 100px;
-        height: 100px;
     }
 }
 
